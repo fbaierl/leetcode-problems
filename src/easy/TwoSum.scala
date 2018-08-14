@@ -8,7 +8,7 @@ You may assume that each input would have exactly one solution, and you may not 
 
 import util.control.Breaks._
 
-object Solution {
+object TwoSum {
     def twoSum(nums: Array[Int], target: Int): Array[Int] = {
         var result : Array[Int] = null
         for(i <- 0 to nums.size - 1){

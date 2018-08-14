@@ -20,7 +20,7 @@ Note:
 Your algorithm should run in O(n) time and uses constant extra space
  */
 
-object Solution {
+object FirstMissingPositive {
 
 
   def main(args: Array[String]): Unit = {
