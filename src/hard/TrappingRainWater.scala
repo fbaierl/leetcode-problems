@@ -23,15 +23,22 @@ object TrappingRainWater {
     println("Should be 0: " + trap(Array(0,0,0,1,1,1,0,0)))
     println("Should be 1: " + trap(Array(0,1,1,2,1,2,2,2,2)))
     println("Should be 3: " + trap(Array(1,0,0,0,1)))
-
-    /*
-     * MoooM
-     * MoMoM
-     */
     println("Should be 5: " + trap(Array(2,0,1,0,2)))
   }
 
-  def trap(height: Array[Int]): Int = {
-    0
+
+  def howMuchWater(height: Array[Int], index: Int): Int = {
+    val currentVal = height(index)
+    val highestLeftOfCurrent = height.take(index).reduceOption(_ max _).getOrElse(0)
+    val highestRightOfCurrent = height.toList.takeRight(height.length - index - 1).reduceOption(_ max _).getOrElse(0)
+    val lowestBorder = Math.min(highestLeftOfCurrent, highestRightOfCurrent)
+    if(currentVal < lowestBorder) lowestBorder - currentVal else 0
   }
+
+  def trap(height: Array[Int]): Int = {
+    height.zipWithIndex.map { case (_, index) =>
+      howMuchWater(height, index)
+    }.sum
+  }
+
 }
